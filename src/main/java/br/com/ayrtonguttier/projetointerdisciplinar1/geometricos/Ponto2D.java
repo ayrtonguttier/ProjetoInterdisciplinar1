@@ -1,9 +1,9 @@
 package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
 
-public abstract class Ponto2D {
+public final class Ponto2D {
 
-    protected float x;
-    protected float y;
+    private float x;
+    private float y;
 
     public Ponto2D(float x, float y) throws Exception {
         if (x < 0.) {

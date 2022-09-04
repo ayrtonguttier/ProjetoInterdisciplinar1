@@ -7,7 +7,7 @@ public class Quadrado extends Objeto2D {
     private float lado;
 
     public Quadrado(float x, float y, float lado) throws Exception {
-        super(x, y, "Quadrado");
+        super(new Ponto2D(x, y), "Quadrado");
         this.lado = lado;
     }
 
@@ -23,7 +23,7 @@ public class Quadrado extends Objeto2D {
 
     @Override
     public String toString() {
-        String msgSuper = super.toString();
+        String msgSuper = posicao.toString();
         String msgLado = String.format("Com lado %f\n", this.lado);
         String msgArea = String.format("Com área %f\n", CalcularArea());
         String msgPerimetro = String.format("Com perímetro %f\n", CalcularPerimetro());
@@ -32,7 +32,11 @@ public class Quadrado extends Objeto2D {
     }
 
     @Override
-    public String CriarRegistro() {        
-        return String.format(Locale.US, "quadrado;%f;%f;%f", x, y, lado);
+    public String CriarRegistro() {
+        String tipo = this.getClass().getTypeName();
+        float x, y;
+        x = posicao.getX();
+        y = posicao.getY();
+        return String.format(Locale.US, "%s;%f;%f;%f", tipo, x, y, lado);
     }
 }

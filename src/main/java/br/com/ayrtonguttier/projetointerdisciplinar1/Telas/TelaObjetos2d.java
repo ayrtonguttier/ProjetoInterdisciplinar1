@@ -17,8 +17,9 @@ public class TelaObjetos2d extends javax.swing.JDialog {
      * Creates new form TelaObjetos2d
      */
     public TelaObjetos2d(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+        super(parent, modal);               
         initComponents();
+        setLocationRelativeTo(parent); 
     }
 
     public void exibir(List<Objeto2D> objetos) {        
@@ -27,7 +28,7 @@ public class TelaObjetos2d extends javax.swing.JDialog {
             String atual = txtAreaObjetos.getText();
             txtAreaObjetos.setText(String.format("%s%s\n", atual, objeto.toString()));
         }
-
+        
         super.setVisible(true);
     }
 
@@ -44,6 +45,7 @@ public class TelaObjetos2d extends javax.swing.JDialog {
         txtAreaObjetos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Objetos 2D");
 
         txtAreaObjetos.setColumns(20);
         txtAreaObjetos.setRows(5);

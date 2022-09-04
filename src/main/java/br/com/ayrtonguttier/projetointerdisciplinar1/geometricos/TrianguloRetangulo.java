@@ -8,7 +8,7 @@ public class TrianguloRetangulo extends Objeto2D {
     private final float altura;
 
     public TrianguloRetangulo(float x, float y, float base, float altura) throws Exception {
-        super(x, y, "Triângulo");
+        super(new Ponto2D(x, y), "Triângulo retângulo");
 
         this.base = base;
         this.altura = altura;
@@ -45,29 +45,10 @@ public class TrianguloRetangulo extends Objeto2D {
 
     @Override
     public String CriarRegistro() {
-        return String.format(Locale.US, "trianguloretangulo;%f;%f;%f;%f", x, y, base, altura);
+        String tipo = this.getClass().getTypeName();
+        float x, y;
+        x = posicao.getX();
+        y = posicao.getY();
+        return String.format(Locale.US, "%s;%f;%f;%f;%f", tipo, x, y, base, altura);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        boolean ehDoTipoCerto = obj instanceof TrianguloRetangulo;
-        if (!ehDoTipoCerto) {
-            return false;
-        }
-
-        TrianguloRetangulo t = (TrianguloRetangulo) obj;
-        return t.hashCode() == this.hashCode();
-
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Float.floatToIntBits(this.base);
-        hash = 71 * hash + Float.floatToIntBits(this.altura);
-        hash = 71 * hash + Float.floatToIntBits(this.x);
-        hash = 71 * hash + Float.floatToIntBits(this.y);
-        return hash;
-    }
-
 }

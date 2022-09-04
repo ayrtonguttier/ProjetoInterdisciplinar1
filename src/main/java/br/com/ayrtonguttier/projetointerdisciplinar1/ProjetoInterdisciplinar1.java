@@ -4,21 +4,12 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.Telas.TelaObjetos2d;
+import br.com.ayrtonguttier.projetointerdisciplinar1.Telas.*;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.Map;
 
 /**
  *
@@ -26,8 +17,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
-    private Quadrado q;
-    private TrianguloRetangulo t;
     private List<Objeto2D> objetos;
 
     /**
@@ -35,7 +24,10 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
      */
     public ProjetoInterdisciplinar1() {
         objetos = new ArrayList<>();
+
         initComponents();
+        this.setLocationRelativeTo(null);
+        atualizarQuantidades();
     }
 
     /**
@@ -47,229 +39,50 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtPosicaoTrianguloX = new javax.swing.JTextField();
-        txtPosicaoTrianguloY = new javax.swing.JTextField();
-        txtBaseTriangulo = new javax.swing.JTextField();
-        txtAlturaTriangulo = new javax.swing.JTextField();
-        btnCalcularTriangulo = new javax.swing.JButton();
-        btnSalvarTriangulo = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaTriangulo = new javax.swing.JTextArea();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        btnCalcularQuadrado = new javax.swing.JButton();
-        txtPosicaoQuadradoX = new javax.swing.JTextField();
-        txtPosicaoQuadradoY = new javax.swing.JTextField();
-        txtLadoQuadrado = new javax.swing.JTextField();
-        btnSalvarQuadrado = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtAreaQuadrado = new javax.swing.JTextArea();
-        btnMostrarObj2d = new javax.swing.JButton();
-        btnSalvarObj2d = new javax.swing.JButton();
-        btnAbrirArquivo = new javax.swing.JButton();
+        btnQuadrado = new javax.swing.JButton();
+        btnTriangulo = new javax.swing.JButton();
+        btnMostrarObjetos2D = new javax.swing.JButton();
+        lblQtdQuadrados = new javax.swing.JLabel();
+        lblQtdTriangulos = new javax.swing.JLabel();
+        lblTotalObj2D = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Projeto Interdisciplinar");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Triângulo Retângulo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Objetos 2D"));
 
-        jLabel1.setText("Posição X");
-
-        jLabel2.setText("Posição Y");
-
-        jLabel3.setText("Base");
-
-        jLabel4.setText("Altura");
-
-        btnCalcularTriangulo.setText("Calcular");
-        btnCalcularTriangulo.addActionListener(new java.awt.event.ActionListener() {
+        btnQuadrado.setText("Adicionar Quadrado");
+        btnQuadrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularTrianguloActionPerformed(evt);
+                btnQuadradoActionPerformed(evt);
             }
         });
 
-        btnSalvarTriangulo.setText("Salvar");
-        btnSalvarTriangulo.addActionListener(new java.awt.event.ActionListener() {
+        btnTriangulo.setText("Adicionar Triângulo");
+        btnTriangulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarTrianguloActionPerformed(evt);
+                btnTrianguloActionPerformed(evt);
             }
         });
 
-        txtAreaTriangulo.setEditable(false);
-        txtAreaTriangulo.setColumns(20);
-        txtAreaTriangulo.setRows(5);
-        jScrollPane1.setViewportView(txtAreaTriangulo);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtPosicaoTrianguloX, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBaseTriangulo)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(txtPosicaoTrianguloY, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txtAlturaTriangulo)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnCalcularTriangulo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalvarTriangulo)))
-                        .addGap(180, 180, 180))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtPosicaoTrianguloX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtPosicaoTrianguloY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtBaseTriangulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtAlturaTriangulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCalcularTriangulo)
-                    .addComponent(btnSalvarTriangulo))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Quadrado"));
-        jPanel4.setPreferredSize(new java.awt.Dimension(367, 24));
-
-        jLabel5.setText("Posição X");
-
-        jLabel6.setText("Posicão Y");
-
-        jLabel7.setText("Lado");
-
-        btnCalcularQuadrado.setText("Calcular");
-        btnCalcularQuadrado.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrarObjetos2D.setText("Mostrar Todos");
+        btnMostrarObjetos2D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularQuadradoActionPerformed(evt);
+                btnMostrarObjetos2DActionPerformed(evt);
             }
         });
 
-        btnSalvarQuadrado.setText("Salvar");
-        btnSalvarQuadrado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarQuadradoActionPerformed(evt);
-            }
-        });
+        lblQtdQuadrados.setText("Quantidade de quadrados: %d");
 
-        txtAreaQuadrado.setEditable(false);
-        txtAreaQuadrado.setColumns(20);
-        txtAreaQuadrado.setRows(5);
-        jScrollPane2.setViewportView(txtAreaQuadrado);
+        lblQtdTriangulos.setText("Quantidade de triângulos: %d");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPosicaoQuadradoY)
-                                    .addComponent(txtLadoQuadrado)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnCalcularQuadrado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalvarQuadrado))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPosicaoQuadradoX, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtPosicaoQuadradoX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtPosicaoQuadradoY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtLadoQuadrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCalcularQuadrado)
-                    .addComponent(btnSalvarQuadrado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        btnMostrarObj2d.setText("Mostrar Todos");
-        btnMostrarObj2d.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarObj2dActionPerformed(evt);
-            }
-        });
-
-        btnSalvarObj2d.setText("Salvar Arquivo");
-        btnSalvarObj2d.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarObj2dActionPerformed(evt);
-            }
-        });
-
-        btnAbrirArquivo.setText("Abrir arquivo");
-        btnAbrirArquivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirArquivoActionPerformed(evt);
-            }
-        });
+        lblTotalObj2D.setText("Total de objetos 2D: %d");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -279,212 +92,133 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAbrirArquivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMostrarObj2d)
+                        .addComponent(btnQuadrado)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSalvarObj2d)))
-                .addContainerGap())
+                        .addComponent(lblQtdQuadrados))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTriangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMostrarObjetos2D))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTotalObj2D)
+                            .addComponent(lblQtdTriangulos))))
+                .addContainerGap(387, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMostrarObj2d)
-                    .addComponent(btnSalvarObj2d)
-                    .addComponent(btnAbrirArquivo))
-                .addContainerGap())
+                    .addComponent(btnQuadrado)
+                    .addComponent(lblQtdQuadrados))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTriangulo)
+                    .addComponent(lblQtdTriangulos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarObjetos2D)
+                    .addComponent(lblTotalObj2D))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Objetos 2D", jPanel1);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Objetos 3D"));
+
+        jButton1.setText("Adicionar Cone");
+
+        jButton2.setText("Adicionar Paralelepípedo");
+
+        jButton3.setText("Adicionar Cilíndro");
+
+        jButton4.setText("Mostrar Todos");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 783, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
-
-        jTabbedPane1.addTab("Objetos 3D", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCalcularTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularTrianguloActionPerformed
+    private void btnQuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuadradoActionPerformed
         // TODO add your handling code here:
-        String x, y, base, altura;
-        x = txtPosicaoTrianguloX.getText();
-        y = txtPosicaoTrianguloY.getText();
-        base = txtBaseTriangulo.getText();
-        altura = txtAlturaTriangulo.getText();
+        TelaQuadrado tela = new TelaQuadrado(this, true, objetos);
+        tela.setVisible(true);
+        atualizarQuantidades();
+    }//GEN-LAST:event_btnQuadradoActionPerformed
 
-        try {
-            t = Factory.criarTrianguloRetangulo(x, y, base, altura);
-            txtAreaTriangulo.setText(t.toString());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro ao montar triângulo", JOptionPane.INFORMATION_MESSAGE);
-            Logger.getLogger(ProjetoInterdisciplinar1.class.getName()).log(Level.WARNING, null, ex);
-        }
-    }//GEN-LAST:event_btnCalcularTrianguloActionPerformed
-
-    private void btnCalcularQuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularQuadradoActionPerformed
+    private void btnMostrarObjetos2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarObjetos2DActionPerformed
         // TODO add your handling code here:
-        try {
-
-            String x, y, lado;
-            x = txtPosicaoQuadradoX.getText();
-            y = txtPosicaoQuadradoY.getText();
-            lado = txtLadoQuadrado.getText();
-            q = Factory.criarQuadrado(x, y, lado);
-            txtAreaQuadrado.setText(q.toString());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro ao montar quadrado", JOptionPane.INFORMATION_MESSAGE);
-            Logger.getLogger(ProjetoInterdisciplinar1.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btnCalcularQuadradoActionPerformed
-
-    private void LimparFormularios() {
-        LimparFormularioQuadrado();
-        LimparFormularioTriangulo();
-    }
-
-    private void LimparFormularioQuadrado() {
-        txtPosicaoQuadradoX.setText("");
-        txtPosicaoQuadradoY.setText("");
-        txtLadoQuadrado.setText("");
-        txtAreaQuadrado.setText("");
-        q = null;
-    }
-
-    private void LimparFormularioTriangulo() {
-        txtPosicaoTrianguloX.setText("");
-        txtPosicaoTrianguloY.setText("");
-        txtBaseTriangulo.setText("");
-        txtAlturaTriangulo.setText("");
-        txtAreaTriangulo.setText("");
-        t = null;
-    }
-
-    private void btnSalvarTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarTrianguloActionPerformed
-        // TODO add your handling code here:
-        if (t != null) {
-            objetos.add(t);
-            LimparFormularioTriangulo();
-        }
-    }//GEN-LAST:event_btnSalvarTrianguloActionPerformed
-
-    private void btnSalvarQuadradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarQuadradoActionPerformed
-        // TODO add your handling code here:
-        if (q != null) {
-            objetos.add(q);
-            LimparFormularioQuadrado();
-        }
-    }//GEN-LAST:event_btnSalvarQuadradoActionPerformed
-
-    private void btnMostrarObj2dActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarObj2dActionPerformed
-        // TODO add your handling code here:
-        if (objetos.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nenhum objeto em memória a ser exibido\nCarregue um arquivo ou crie um novo objeto.", "Mostrar objetos", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
         TelaObjetos2d tela = new TelaObjetos2d(this, true);
         tela.exibir(objetos);
-    }//GEN-LAST:event_btnMostrarObj2dActionPerformed
+    }//GEN-LAST:event_btnMostrarObjetos2DActionPerformed
 
-    private void btnSalvarObj2dActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarObj2dActionPerformed
+    private void btnTrianguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrianguloActionPerformed
         // TODO add your handling code here:
+        TelaTriangulo tela = new TelaTriangulo(this, true, objetos);
+        tela.setVisible(true);
+        atualizarQuantidades();
+    }//GEN-LAST:event_btnTrianguloActionPerformed
 
-        if (objetos.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nenhum objeto em memória a ser salvo.", "Salvar objetos", JOptionPane.INFORMATION_MESSAGE);
-            return;
+    private void atualizarQuantidades() {
+
+        Map<String, Integer> quantidades;
+        quantidades = new HashMap<>();
+        for (Objeto2D item : objetos) {
+            int qtd = quantidades.getOrDefault(item.getClass().getTypeName(), 0);
+            quantidades.put(item.getClass().getTypeName(), qtd + 1);
+
+            int total = quantidades.getOrDefault("total", 0);
+            quantidades.put("total", total + 1);
         }
-
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FileNameExtensionFilter("Arquivo de objetos", "obj"));
-        chooser.setMultiSelectionEnabled(false);
-        int resultado = chooser.showSaveDialog(this);
-
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            try {
-                File f = chooser.getSelectedFile();
-                if (!f.getAbsolutePath().endsWith(".obj")) {
-                    f = new File(f.getAbsolutePath() + ".obj");
-                }
-                if (f.exists()) {
-                    f.delete();
-                }
-                f.createNewFile();
-                try ( FileWriter writer = new FileWriter(f)) {
-                    for (Objeto2D objeto : objetos) {
-                        String linha = String.format("%s\n", objeto.CriarRegistro());
-                        writer.write(linha);
-                    }
-                }
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro ao salvar arquivo", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_btnSalvarObj2dActionPerformed
-
-    private void btnAbrirArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirArquivoActionPerformed
-        // TODO add your handling code here:
-
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileFilter(new FileNameExtensionFilter("Arquivo de objetos", "obj"));
-        chooser.setMultiSelectionEnabled(false);
-        int resultado = chooser.showOpenDialog(this);
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            List<Objeto2D> objs = new ArrayList<>();
-            File f = chooser.getSelectedFile();
-            try {
-
-                FileReader fileReader = new FileReader(f);
-                try ( BufferedReader reader = new BufferedReader(fileReader)) {
-
-                    String linha;
-
-                    while ((linha = reader.readLine()) != null) {
-                        objs.add(Factory.criarObjeto(linha));
-                    }
-
-                    this.objetos = objs;
-                }
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro ao abrir arquivo", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro no formato do arquivo.", JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
-
-    }//GEN-LAST:event_btnAbrirArquivoActionPerformed
+        lblQtdQuadrados.setText(String.format("Quantidade de quadrados: %d", quantidades.getOrDefault(Quadrado.class.getTypeName(), 0)));
+        lblQtdTriangulos.setText(String.format("Quantidade de quadrados: %d", quantidades.getOrDefault(TrianguloRetangulo.class.getTypeName(), 0)));
+        lblTotalObj2D.setText(String.format("Total de objetos 2D: %d", quantidades.getOrDefault("total", 0)));
+    }
 
     /**
      * @param args the command line arguments
@@ -523,35 +257,17 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirArquivo;
-    private javax.swing.JButton btnCalcularQuadrado;
-    private javax.swing.JButton btnCalcularTriangulo;
-    private javax.swing.JButton btnMostrarObj2d;
-    private javax.swing.JButton btnSalvarObj2d;
-    private javax.swing.JButton btnSalvarQuadrado;
-    private javax.swing.JButton btnSalvarTriangulo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton btnMostrarObjetos2D;
+    private javax.swing.JButton btnQuadrado;
+    private javax.swing.JButton btnTriangulo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField txtAlturaTriangulo;
-    private javax.swing.JTextArea txtAreaQuadrado;
-    private javax.swing.JTextArea txtAreaTriangulo;
-    private javax.swing.JTextField txtBaseTriangulo;
-    private javax.swing.JTextField txtLadoQuadrado;
-    private javax.swing.JTextField txtPosicaoQuadradoX;
-    private javax.swing.JTextField txtPosicaoQuadradoY;
-    private javax.swing.JTextField txtPosicaoTrianguloX;
-    private javax.swing.JTextField txtPosicaoTrianguloY;
+    private javax.swing.JLabel lblQtdQuadrados;
+    private javax.swing.JLabel lblQtdTriangulos;
+    private javax.swing.JLabel lblTotalObj2D;
     // End of variables declaration//GEN-END:variables
 }

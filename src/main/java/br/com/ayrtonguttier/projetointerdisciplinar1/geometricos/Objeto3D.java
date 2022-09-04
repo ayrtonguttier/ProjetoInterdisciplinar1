@@ -1,14 +1,16 @@
 package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
 
-public abstract class Objeto3D extends Ponto3D {
+public abstract class Objeto3D {
 
     protected String descricaoFigura;
+    protected Ponto3D posicao;
 
-    public Objeto3D(float x, float y, float z, String descricaoFigura) throws Exception {
-        super(x, y, z);
+    public Objeto3D(Ponto3D posicao, String descricaoFigura) throws Exception {
+        this.posicao = posicao;
         this.descricaoFigura = descricaoFigura;
     }
 
     public abstract float CalcularVolume();
+    public abstract float CalcularArea();
 
 }

@@ -13,18 +13,13 @@ public class Factory {
     public static Objeto2D criarObjeto(String dados) throws Exception {
 
         String[] valores = dados.split(";");
-
-        switch (valores[0]) {
-            case "quadrado" -> {
-                return criarQuadrado(valores[1], valores[2], valores[3]);
-            }
-            case "trianguloretangulo" -> {
-                return criarTrianguloRetangulo(valores[1], valores[2], valores[3], valores[4]);
-            }
-            default ->
-                throw new Exception("Tipo não reconhecido.");
+        if (valores[0].equals(Quadrado.class.getTypeName())) {
+            return criarQuadrado(valores[1], valores[2], valores[3]);
+        } else if (valores[0].equals(TrianguloRetangulo.class.getTypeName())) {
+            return criarTrianguloRetangulo(valores[1], valores[2], valores[3], valores[4]);
+        } else {
+            throw new Exception("Tipo não reconhecido.");
         }
-
     }
 
     public static Quadrado criarQuadrado(String x, String y, String lado) throws Exception {
@@ -90,8 +85,7 @@ public class Factory {
         float fY = Float.parseFloat(y);
         float fBase = Float.parseFloat(base);
         float fAltura = Float.parseFloat(altura);
-        
-        
+
         return new TrianguloRetangulo(fX, fY, fBase, fAltura);
     }
 
