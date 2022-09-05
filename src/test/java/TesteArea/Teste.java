@@ -25,7 +25,7 @@ public class Teste {
     @Test
     public void testeAreaBase() throws Exception {
         ConeReto cone = new ConeReto(1, 1, 1, 6, 8);
-        double resultado = arredondar(cone.CalcularArea(), 2);
+        double resultado = arredondar(cone.calcularArea(), 2);
         double esperado = arredondar(36 * Math.PI, 2);
         assertEquals(esperado, resultado);
     }
@@ -33,7 +33,7 @@ public class Teste {
     @Test
     public void testeVolume() throws Exception {
         ConeReto cone = new ConeReto(1, 1, 1, 6, 8);
-        double area = arredondar(cone.CalcularVolume(), 2);
+        double area = arredondar(cone.calcularVolume(), 2);
 
         double esperado = arredondar(96 * Math.PI, 2);
 

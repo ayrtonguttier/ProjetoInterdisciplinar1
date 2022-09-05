@@ -89,4 +89,60 @@ public class Factory {
         return new TrianguloRetangulo(fX, fY, fBase, fAltura);
     }
 
+    public static Objeto3D criarObjeto3D(String dados) throws Exception {
+        String[] valores = dados.split(";");
+        if (valores[0].equals(ConeReto.class.getTypeName())) {
+            return criarConeReto(valores[1], valores[2], valores[3], valores[4], valores[5]);
+        } else {
+            throw new Exception("Tipo não reconhecido.");
+        }
+    }
+
+    public static ConeReto criarConeReto(String x, String y, String z, String raioBase, String altura) throws Exception {
+        if (x.isBlank()) {
+            throw new Exception("Posicão X deve estar preenchida.");
+        }
+        if (y.isBlank()) {
+            throw new Exception("Posicão Y deve estar preenchida.");
+        }
+        if (z.isBlank()) {
+            throw new Exception("Posicão Z deve estar preenchida.");
+        }
+
+        if (raioBase.isBlank()) {
+            throw new Exception("Raio da base deve estar preenchido.");
+        }
+
+        if (altura.isBlank()) {
+            throw new Exception("Altura deve estar preenchida.");
+        }
+
+        if (!Auxiliar.ehFloat(x)) {
+            throw new Exception("Posição X inválida.");
+        }
+        if (!Auxiliar.ehFloat(y)) {
+            throw new Exception("Posição Y inválida.");
+        }
+        if (!Auxiliar.ehFloat(z)) {
+            throw new Exception("Posição Z inválida.");
+        }
+
+        if (!Auxiliar.ehFloat(raioBase)) {
+            throw new Exception("Raio da base inválido.");
+        }
+        if (!Auxiliar.ehFloat(altura)) {
+            throw new Exception("Altura inválida.");
+        }
+
+        float fX, fY, fZ, fRaioBase, fAltura;
+        fX = Float.parseFloat(x);
+        fY = Float.parseFloat(y);
+        fZ = Float.parseFloat(z);
+        fRaioBase = Float.parseFloat(raioBase);
+        fAltura = Float.parseFloat(altura);
+
+        return new ConeReto(fX, fY, fZ, fRaioBase, fAltura);
+
+    }
+
 }

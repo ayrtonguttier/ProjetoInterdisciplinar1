@@ -10,7 +10,7 @@ public abstract class Objeto3D {
         this.descricaoFigura = descricaoFigura;
     }
 
-    public abstract float CalcularVolume();
-    public abstract float CalcularArea();
+    public abstract float calcularVolume();
+    public abstract float calcularArea();
 
 }
