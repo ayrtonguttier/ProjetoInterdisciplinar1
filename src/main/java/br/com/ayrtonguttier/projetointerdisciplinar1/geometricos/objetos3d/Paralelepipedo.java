@@ -39,13 +39,7 @@ public class Paralelepipedo extends Objeto3D {
 
     @Override
     public String toString() {
-        String msgForma = String.format("%s:\n", this.descricaoFigura);
-        String msgPosicao = this.ponto.toString();
-        String msgArestas = String.format("Com arestas: %f %f %f\n", this.arestaA, this.arestaB, this.arestaC);
-        String msgAreaTotal = String.format("Com area total: %f\n", this.calcularArea());
-        String msgVolume = String.format("Com volume: %f\n", this.calcularVolume());
-
-        return String.format("%s%s%s%s%s", msgForma, msgPosicao, msgArestas, msgAreaTotal, msgVolume);
+        return getInformacoesFormatadas();
     }
 
     @Override
@@ -53,6 +47,17 @@ public class Paralelepipedo extends Objeto3D {
         String tipo = this.getClass().getTypeName();
         return String.format(Locale.US, "%s;%f;%f;%f;%f;%f;%f", tipo, this.ponto.getX(), this.ponto.getY(), this.ponto.getZ(), this.arestaA, this.arestaB, this.arestaC);
 
+    }
+
+    @Override
+    public String getInformacoesFormatadas() {
+        String msgForma = String.format("%s:\n", this.descricaoFigura);
+        String msgPosicao = this.ponto.toString();
+        String msgArestas = String.format("Com arestas: %f %f %f\n", this.arestaA, this.arestaB, this.arestaC);
+        String msgAreaTotal = String.format("Com area total: %f\n", this.calcularArea());
+        String msgVolume = String.format("Com volume: %f\n", this.calcularVolume());
+
+        return String.format("%s%s%s%s%s", msgForma, msgPosicao, msgArestas, msgAreaTotal, msgVolume);
     }
 
 }

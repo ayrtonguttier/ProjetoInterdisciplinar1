@@ -1,8 +1,9 @@
 package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Forma;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.pontos.Ponto3D;
 
-public abstract class Objeto3D {
+public abstract class Objeto3D implements Forma {
 
     protected String descricaoFigura;
     protected Ponto3D ponto;
@@ -13,7 +14,12 @@ public abstract class Objeto3D {
     }
 
     public abstract double calcularVolume();
+
     public abstract double calcularArea();
+
     public abstract String criarRegistro();
+
+    @Override
+    public abstract String getInformacoesFormatadas();
 
 }

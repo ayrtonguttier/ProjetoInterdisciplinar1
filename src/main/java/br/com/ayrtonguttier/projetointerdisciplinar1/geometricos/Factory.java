@@ -11,12 +11,36 @@ import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadr
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Cilindro;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Paralelepipedo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ayrtonguttier
  */
 public class Factory {
+
+    public static final int OBJETO2D = 0;
+    public static final int OBJETO3D = 1;
+
+    public static int getTipo(String linha) {
+        String[] dados = linha.split(";");
+        try {
+            Class c = Class.forName(dados[0]);
+
+            if (Objeto2D.class.isAssignableFrom(c)) {
+                return Factory.OBJETO2D;
+            }
+            if (Objeto3D.class.isAssignableFrom(c)) {
+                return Factory.OBJETO3D;
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+
+        return -1;
+    }
 
     public static Objeto2D criarObjeto(String dados) throws Exception {
 
@@ -101,6 +125,10 @@ public class Factory {
         String[] valores = dados.split(";");
         if (valores[0].equals(ConeReto.class.getTypeName())) {
             return criarConeReto(valores[1], valores[2], valores[3], valores[4], valores[5]);
+        } else if (valores[0].equals(Paralelepipedo.class.getTypeName())) {
+            return criarParalelepipedo(valores[1], valores[2], valores[3], valores[4], valores[5], valores[6]);
+        } else if (valores[0].equals(Cilindro.class.getTypeName())) {
+            return criarCilindro(valores[1], valores[2], valores[3], valores[4], valores[5]);
         } else {
             throw new Exception("Tipo não reconhecido.");
         }
@@ -187,7 +215,7 @@ public class Factory {
         dy = Double.parseDouble(y);
         dz = Double.parseDouble(z);
         dRaio = Double.parseDouble(raioBase);
-        dAltura = Double.parseDouble(altura);        
+        dAltura = Double.parseDouble(altura);
         return new Cilindro(dx, dy, dz, dRaio, dAltura);
 
     }

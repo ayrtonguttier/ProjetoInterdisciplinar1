@@ -24,12 +24,7 @@ public class Quadrado extends Objeto2D {
 
     @Override
     public String toString() {
-        String msgSuper = ponto.toString();
-        String msgLado = String.format("Com lado %f\n", this.lado);
-        String msgArea = String.format("Com área %f\n", calcularArea());
-        String msgPerimetro = String.format("Com perímetro %f\n", calcularPerimetro());
-
-        return String.format("Quadrado:\n%s%s%s%s", msgSuper, msgLado, msgArea, msgPerimetro);
+        return getInformacoesFormatadas();
     }
 
     @Override
@@ -39,5 +34,15 @@ public class Quadrado extends Objeto2D {
         x = ponto.getX();
         y = ponto.getY();
         return String.format(Locale.US, "%s;%f;%f;%f", tipo, x, y, lado);
+    }
+
+    @Override
+    public String getInformacoesFormatadas() {
+        String msgSuper = ponto.toString();
+        String msgLado = String.format("Com lado %f\n", this.lado);
+        String msgArea = String.format("Com área %f\n", calcularArea());
+        String msgPerimetro = String.format("Com perímetro %f\n", calcularPerimetro());
+
+        return String.format("Quadrado:\n%s%s%s%s", msgSuper, msgLado, msgArea, msgPerimetro);
     }
 }

@@ -4,31 +4,32 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Forma;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
 import java.util.List;
 
 /**
  *
  * @author ayrtonguttier
  */
-public class TelaObjetos2d extends javax.swing.JDialog {
+public class TelaFormas extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaObjetos2d
      */
-    public TelaObjetos2d(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);               
+    public TelaFormas(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        setLocationRelativeTo(parent); 
+        setLocationRelativeTo(parent);
     }
 
-    public void exibir(List<Objeto2D> objetos) {        
-        
-        for (Objeto2D objeto : objetos) {
+    public void exibir(List<? extends Forma> objetos) {
+        for (Forma objeto : objetos) {
             String atual = txtAreaObjetos.getText();
-            txtAreaObjetos.setText(String.format("%s%s\n", atual, objeto.toString()));
+            txtAreaObjetos.setText(String.format("%s%s\n", atual, objeto.getInformacoesFormatadas()));
         }
-        
+
         super.setVisible(true);
     }
 

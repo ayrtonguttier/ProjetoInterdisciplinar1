@@ -35,13 +35,7 @@ public class TrianguloRetangulo extends Objeto2D {
 
     @Override
     public String toString() {
-        String msgSuper = super.toString();
-        String msgBase = String.format("Com base %f\n", base);
-        String msgAltura = String.format("Com altura %f\n", altura);
-        String msgArea = String.format("Com area %f\n", calcularArea());
-        String msgPerimetro = String.format("Com perímetro %f\n", calcularPerimetro());
-
-        return String.format("Triângulo\n%s%s%s%s%s", msgSuper, msgBase, msgAltura, msgArea, msgPerimetro);
+        return getInformacoesFormatadas();
     }
 
     @Override
@@ -51,5 +45,16 @@ public class TrianguloRetangulo extends Objeto2D {
         x = ponto.getX();
         y = ponto.getY();
         return String.format(Locale.US, "%s;%f;%f;%f;%f", tipo, x, y, base, altura);
+    }
+
+    @Override
+    public String getInformacoesFormatadas() {
+        String msgPonto = ponto.toString();
+        String msgBase = String.format("Com base %f\n", base);
+        String msgAltura = String.format("Com altura %f\n", altura);
+        String msgArea = String.format("Com area %f\n", calcularArea());
+        String msgPerimetro = String.format("Com perímetro %f\n", calcularPerimetro());
+
+        return String.format("Triângulo\n%s%s%s%s%s", msgPonto, msgBase, msgAltura, msgArea, msgPerimetro);
     }
 }

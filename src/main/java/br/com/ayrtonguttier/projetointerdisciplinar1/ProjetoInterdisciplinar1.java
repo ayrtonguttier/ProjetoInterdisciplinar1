@@ -9,10 +9,25 @@ import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objet
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadrado;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
 import br.com.ayrtonguttier.projetointerdisciplinar1.Telas.*;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Factory;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Filtros;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Cilindro;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.ConeReto;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Paralelepipedo;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -50,15 +65,23 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         lblQtdQuadrados = new javax.swing.JLabel();
         lblQtdTriangulos = new javax.swing.JLabel();
         lblTotalObj2D = new javax.swing.JLabel();
+        btnMostrarQuadrados = new javax.swing.JButton();
+        btnMostrarTriangulos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnAdicionarCone = new javax.swing.JButton();
         btnAdicionarParalelepipedo = new javax.swing.JButton();
         btnAdicionarCilindro = new javax.swing.JButton();
         btnMostrarObjetos3D = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblQtdCones = new javax.swing.JLabel();
+        lblQtdParalelepipedos = new javax.swing.JLabel();
+        lblQtdCilindros = new javax.swing.JLabel();
+        lblQtd3d = new javax.swing.JLabel();
+        btnMostrarCones = new javax.swing.JButton();
+        btnMostrarParalelepipedos = new javax.swing.JButton();
+        btnMostrarCilindros = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Projeto Interdisciplinar");
@@ -92,6 +115,20 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
         lblTotalObj2D.setText("Total de objetos 2D: %d");
 
+        btnMostrarQuadrados.setText("Mostrar Quadrados");
+        btnMostrarQuadrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarQuadradosActionPerformed(evt);
+            }
+        });
+
+        btnMostrarTriangulos.setText("Mostrar Triângulos");
+        btnMostrarTriangulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarTriangulosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,16 +139,22 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnQuadrado)
                         .addGap(18, 18, 18)
-                        .addComponent(lblQtdQuadrados))
+                        .addComponent(lblQtdQuadrados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                        .addComponent(btnMostrarQuadrados))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTriangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMostrarObjetos2D))
+                        .addComponent(btnTriangulo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTotalObj2D)
-                            .addComponent(lblQtdTriangulos))))
-                .addContainerGap(387, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblTotalObj2D)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrarObjetos2D))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblQtdTriangulos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrarTriangulos)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,11 +162,13 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnQuadrado)
-                    .addComponent(lblQtdQuadrados))
+                    .addComponent(lblQtdQuadrados)
+                    .addComponent(btnMostrarQuadrados))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTriangulo)
-                    .addComponent(lblQtdTriangulos))
+                    .addComponent(lblQtdTriangulos)
+                    .addComponent(btnMostrarTriangulos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMostrarObjetos2D)
@@ -155,14 +200,40 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         });
 
         btnMostrarObjetos3D.setText("Mostrar Todos");
+        btnMostrarObjetos3D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarObjetos3DActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Quantidade de cones: %d");
+        lblQtdCones.setText("Quantidade de cones: %d");
 
-        jLabel2.setText("Quantidade de paralelepípedos: %d");
+        lblQtdParalelepipedos.setText("Quantidade de paralelepípedos: %d");
 
-        jLabel3.setText("Quantidade de cilíndros: %d");
+        lblQtdCilindros.setText("Quantidade de cilíndros: %d");
 
-        jLabel4.setText("Total de objetos 3D: %d");
+        lblQtd3d.setText("Total de objetos 3D: %d");
+
+        btnMostrarCones.setText("Mostrar Cones");
+        btnMostrarCones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarConesActionPerformed(evt);
+            }
+        });
+
+        btnMostrarParalelepipedos.setText("Mostrar Paralelepipedos");
+        btnMostrarParalelepipedos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarParalelepipedosActionPerformed(evt);
+            }
+        });
+
+        btnMostrarCilindros.setText("Mostrar Cilindros");
+        btnMostrarCilindros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarCilindrosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -172,18 +243,28 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdicionarParalelepipedo)
-                            .addComponent(btnMostrarObjetos3D))
+                        .addComponent(btnAdicionarParalelepipedo)
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblQtdCones)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrarCones))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblQtdParalelepipedos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                                .addComponent(btnMostrarParalelepipedos))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblQtd3d)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrarObjetos3D))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblQtdCilindros)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnMostrarCilindros))))
                     .addComponent(btnAdicionarCone)
                     .addComponent(btnAdicionarCilindro))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,21 +272,45 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionarCone)
-                    .addComponent(jLabel1))
+                    .addComponent(lblQtdCones)
+                    .addComponent(btnMostrarCones))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionarParalelepipedo)
-                    .addComponent(jLabel2))
+                    .addComponent(lblQtdParalelepipedos)
+                    .addComponent(btnMostrarParalelepipedos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionarCilindro)
-                    .addComponent(jLabel3))
+                    .addComponent(lblQtdCilindros)
+                    .addComponent(btnMostrarCilindros))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMostrarObjetos3D)
-                    .addComponent(jLabel4))
+                    .addComponent(lblQtd3d))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
+
+        btnAbrir.setText("Abrir");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,7 +320,13 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAbrir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalvar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,7 +336,12 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnSair)
+                    .addComponent(btnAbrir))
+                .addContainerGap())
         );
 
         pack();
@@ -240,7 +356,7 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
     private void btnMostrarObjetos2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarObjetos2DActionPerformed
         // TODO add your handling code here:
-        TelaObjetos2d tela = new TelaObjetos2d(this, true);
+        TelaFormas tela = new TelaFormas(this, true);
         tela.exibir(objetos);
     }//GEN-LAST:event_btnMostrarObjetos2DActionPerformed
 
@@ -270,20 +386,156 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_btnAdicionarCilindroActionPerformed
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+
+        JFileChooser fChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivo do projeto interdisciplinar (*.pi)", "pi");
+        fChooser.addChoosableFileFilter(filter);
+        fChooser.setFileFilter(filter);
+        int result = fChooser.showSaveDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+
+            File f = fChooser.getSelectedFile();
+
+            if (f.exists()) {
+                f.delete();
+            }
+
+            try {
+                f.createNewFile();
+                try ( FileWriter writer = new FileWriter(f)) {
+                    for (Objeto2D o : objetos) {
+                        writer.append(o.criarRegistro() + "\n");
+                    }
+                    for (Objeto3D o : objetos3D) {
+                        writer.append(o.criarRegistro() + "\n");
+                    }
+                }
+
+            } catch (IOException ex) {
+                Logger.getLogger(ProjetoInterdisciplinar1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void limparDados() {
+        objetos.clear();
+        objetos3D.clear();
+        atualizarQuantidades();
+    }
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+
+        JFileChooser fChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivo do projeto interdisciplinar (*.pi)", "pi");
+        fChooser.addChoosableFileFilter(filter);
+        fChooser.setFileFilter(filter);
+        int result = fChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            limparDados();
+            File f = fChooser.getSelectedFile();
+            try {
+
+                BufferedReader reader = new BufferedReader(new FileReader(f));
+                String linha;
+                while ((linha = reader.readLine()) != null) {
+                    String[] dados = linha.split(";");
+                    try {
+
+                        if (Factory.getTipo(linha) == Factory.OBJETO2D) {
+                            objetos.add(Factory.criarObjeto(linha));
+                        } else if (Factory.getTipo(linha) == Factory.OBJETO3D) {
+                            objetos3D.add(Factory.criarObjeto3D(linha));
+                        }
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, "Formato do arquivo inválido", "Erro ao abrir arquivo.", JOptionPane.ERROR_MESSAGE);
+                        limparDados();
+                        return;
+                    }
+                }
+
+                reader.close();
+
+            } catch (IOException ex) {
+                Logger.getLogger(ProjetoInterdisciplinar1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            atualizarQuantidades();
+        }
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void btnMostrarObjetos3DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarObjetos3DActionPerformed
+        // TODO add your handling code here:
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(objetos3D);
+
+    }//GEN-LAST:event_btnMostrarObjetos3DActionPerformed
+
+    private void btnMostrarQuadradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarQuadradosActionPerformed
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(Filtros.getQuadrados(objetos));
+
+    }//GEN-LAST:event_btnMostrarQuadradosActionPerformed
+
+    private void btnMostrarTriangulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTriangulosActionPerformed
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(Filtros.getTriangulos(objetos));
+    }//GEN-LAST:event_btnMostrarTriangulosActionPerformed
+
+    private void btnMostrarConesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarConesActionPerformed
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(Filtros.getCones(objetos3D));
+    }//GEN-LAST:event_btnMostrarConesActionPerformed
+
+    private void btnMostrarParalelepipedosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarParalelepipedosActionPerformed
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(Filtros.getParalelepipedos(objetos3D));
+    }//GEN-LAST:event_btnMostrarParalelepipedosActionPerformed
+
+    private void btnMostrarCilindrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarCilindrosActionPerformed
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(Filtros.getCilindros(objetos3D));
+    }//GEN-LAST:event_btnMostrarCilindrosActionPerformed
+
     private void atualizarQuantidades() {
 
         Map<String, Integer> quantidades;
         quantidades = new HashMap<>();
+        String tipo2d, tipo3d;
+        tipo2d = Objeto2D.class.getTypeName();
+        tipo3d = Objeto3D.class.getTypeName();
+
         for (Objeto2D item : objetos) {
             int qtd = quantidades.getOrDefault(item.getClass().getTypeName(), 0);
             quantidades.put(item.getClass().getTypeName(), qtd + 1);
 
-            int total = quantidades.getOrDefault("total", 0);
-            quantidades.put("total", total + 1);
+            int total = quantidades.getOrDefault(tipo2d, 0);
+            quantidades.put(tipo2d, total + 1);
         }
+
+        for (Objeto3D item : objetos3D) {
+            int qtd = quantidades.getOrDefault(item.getClass().getTypeName(), 0);
+            quantidades.put(item.getClass().getTypeName(), qtd + 1);
+
+            int total = quantidades.getOrDefault(tipo3d, 0);
+            quantidades.put(tipo3d, total + 1);
+        }
+
         lblQtdQuadrados.setText(String.format("Quantidade de quadrados: %d", quantidades.getOrDefault(Quadrado.class.getTypeName(), 0)));
         lblQtdTriangulos.setText(String.format("Quantidade de quadrados: %d", quantidades.getOrDefault(TrianguloRetangulo.class.getTypeName(), 0)));
-        lblTotalObj2D.setText(String.format("Total de objetos 2D: %d", quantidades.getOrDefault("total", 0)));
+        lblTotalObj2D.setText(String.format("Total de objetos 2D: %d", quantidades.getOrDefault(tipo2d, 0)));
+
+        lblQtdCones.setText(String.format("Quantidade de cones: %d", quantidades.getOrDefault(ConeReto.class.getTypeName(), 0)));
+        lblQtdParalelepipedos.setText(String.format("Quantidade de paralelepípedos: %d", quantidades.getOrDefault(Paralelepipedo.class.getTypeName(), 0)));
+        lblQtdCilindros.setText(String.format("Quantidade de cilíndros: %d", quantidades.getOrDefault(Cilindro.class.getTypeName(), 0)));
+        lblQtd3d.setText(String.format("Total de objetos 3D: %d", quantidades.getOrDefault(tipo3d, 0)));
+
     }
 
     /**
@@ -323,19 +575,27 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnAdicionarCilindro;
     private javax.swing.JButton btnAdicionarCone;
     private javax.swing.JButton btnAdicionarParalelepipedo;
+    private javax.swing.JButton btnMostrarCilindros;
+    private javax.swing.JButton btnMostrarCones;
     private javax.swing.JButton btnMostrarObjetos2D;
     private javax.swing.JButton btnMostrarObjetos3D;
+    private javax.swing.JButton btnMostrarParalelepipedos;
+    private javax.swing.JButton btnMostrarQuadrados;
+    private javax.swing.JButton btnMostrarTriangulos;
     private javax.swing.JButton btnQuadrado;
+    private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnTriangulo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblQtd3d;
+    private javax.swing.JLabel lblQtdCilindros;
+    private javax.swing.JLabel lblQtdCones;
+    private javax.swing.JLabel lblQtdParalelepipedos;
     private javax.swing.JLabel lblQtdQuadrados;
     private javax.swing.JLabel lblQtdTriangulos;
     private javax.swing.JLabel lblTotalObj2D;

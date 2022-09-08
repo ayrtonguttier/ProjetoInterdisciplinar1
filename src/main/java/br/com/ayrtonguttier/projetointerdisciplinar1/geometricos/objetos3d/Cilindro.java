@@ -48,14 +48,19 @@ public class Cilindro extends Objeto3D {
 
     @Override
     public String toString() {
+        return getInformacoesFormatadas();
+    }
 
+    @Override
+    public String getInformacoesFormatadas() {
+        String header = String.format("%s:\n", this.descricaoFigura);
         String msgPosicao = ponto.toString();
         String msgRaio = String.format("Com raio da base: %f\n", this.raioBase);
         String msgAltura = String.format("Com altura: %f\n", this.altura);
         String msgArea = String.format("Com area: %f\n", this.calcularArea());
         String msgAreaBase = String.format("Com area da base: %f\n", this.calcularAreaBase());
         String msgVolume = String.format("Com volume: %f\n", this.calcularVolume());
-        return String.format("%s%s%s%s%s%s", msgPosicao, msgRaio, msgAltura, msgArea, msgAreaBase, msgVolume);
+        return String.format("%s%s%s%s%s%s%s", header, msgPosicao, msgRaio, msgAltura, msgArea, msgAreaBase, msgVolume);
     }
 
 }

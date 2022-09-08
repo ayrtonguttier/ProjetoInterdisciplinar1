@@ -46,16 +46,7 @@ public class ConeReto extends Objeto3D {
 
     @Override
     public String toString() {
-
-        String msgPosicao = this.ponto.toString();
-        String msgRaioBase = String.format("Com raio da base: %f\n", this.raioBase);
-        String msgAltura = String.format("Com altura: %f\n", this.altura);
-        String msgAreaTotal = String.format("Com área total: %f\n", this.calcularArea());
-        String msgGeratriz = String.format("Com geratriz: %f\n", this.calcularGeratriz());
-        String msgVolume = String.format("Com volume: %f\n", this.calcularVolume());
-
-        return String.format("Cone Reto:\n%s%s%s%s%s%s", msgPosicao, msgRaioBase, msgAltura, msgAreaTotal, msgGeratriz, msgVolume);
-
+        return getInformacoesFormatadas();
     }
 
     @Override
@@ -69,6 +60,18 @@ public class ConeReto extends Objeto3D {
                 this.raioBase,
                 this.altura);
 
+    }
+
+    @Override
+    public String getInformacoesFormatadas() {
+        String msgPosicao = this.ponto.toString();
+        String msgRaioBase = String.format("Com raio da base: %f\n", this.raioBase);
+        String msgAltura = String.format("Com altura: %f\n", this.altura);
+        String msgAreaTotal = String.format("Com área total: %f\n", this.calcularArea());
+        String msgGeratriz = String.format("Com geratriz: %f\n", this.calcularGeratriz());
+        String msgVolume = String.format("Com volume: %f\n", this.calcularVolume());
+
+        return String.format("Cone Reto:\n%s%s%s%s%s%s", msgPosicao, msgRaioBase, msgAltura, msgAreaTotal, msgGeratriz, msgVolume);
     }
 
 }
