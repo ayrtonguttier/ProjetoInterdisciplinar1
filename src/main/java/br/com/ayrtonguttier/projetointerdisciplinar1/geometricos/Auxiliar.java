@@ -10,20 +10,20 @@ package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
  */
 public class Auxiliar {
 
-    public static Boolean ehFloat(String valor) {
+    public static Boolean ehDouble(String valor) {
         try {
-            Float.parseFloat(valor);
+            Double.parseDouble(valor);
             return true;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    public static float arred(float valor, int decimais) {
+    public static double arred(double valor, int decimais) {
 
         double m = Math.pow(10, decimais);
         double v = valor * m;
-        return (float) (Math.round(v) / m);
+        return Math.round(v) / m;
     }
 
 }

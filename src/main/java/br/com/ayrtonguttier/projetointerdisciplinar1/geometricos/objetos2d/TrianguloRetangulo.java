@@ -1,13 +1,14 @@
-package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
+package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.pontos.Ponto2D;
 import java.util.Locale;
 
 public class TrianguloRetangulo extends Objeto2D {
 
-    private final float base;
-    private final float altura;
+    private final double base;
+    private final double altura;
 
-    public TrianguloRetangulo(float x, float y, float base, float altura) throws Exception {
+    public TrianguloRetangulo(double x, double y, double base, double altura) throws Exception {
         super(new Ponto2D(x, y), "Triângulo retângulo");
 
         this.base = base;
@@ -15,21 +16,21 @@ public class TrianguloRetangulo extends Objeto2D {
     }
 
     @Override
-    public float CalcularArea() {
+    public double calcularArea() {
         return (base * altura) / 2;
     }
 
     @Override
-    public float CalcularPerimetro() {
-        float hipotenusa = CalcularHipotenusa();
+    public double calcularPerimetro() {
+        double hipotenusa = calcularHipotenusa();
         return hipotenusa + altura + base;
     }
 
-    private float CalcularHipotenusa() {
+    private double calcularHipotenusa() {
         double qBase = Math.pow(base, 2);
         double qAltura = Math.pow(altura, 2);
         double soma = qBase + qAltura;
-        return (float) Math.sqrt(soma);
+        return Math.sqrt(soma);
     }
 
     @Override
@@ -37,18 +38,18 @@ public class TrianguloRetangulo extends Objeto2D {
         String msgSuper = super.toString();
         String msgBase = String.format("Com base %f\n", base);
         String msgAltura = String.format("Com altura %f\n", altura);
-        String msgArea = String.format("Com area %f\n", CalcularArea());
-        String msgPerimetro = String.format("Com perímetro %f\n", CalcularPerimetro());
+        String msgArea = String.format("Com area %f\n", calcularArea());
+        String msgPerimetro = String.format("Com perímetro %f\n", calcularPerimetro());
 
         return String.format("Triângulo\n%s%s%s%s%s", msgSuper, msgBase, msgAltura, msgArea, msgPerimetro);
     }
 
     @Override
-    public String CriarRegistro() {
+    public String criarRegistro() {
         String tipo = this.getClass().getTypeName();
-        float x, y;
-        x = posicao.getX();
-        y = posicao.getY();
+        double x, y;
+        x = ponto.getX();
+        y = ponto.getY();
         return String.format(Locale.US, "%s;%f;%f;%f;%f", tipo, x, y, base, altura);
     }
 }

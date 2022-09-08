@@ -4,10 +4,13 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadrado;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
 import br.com.ayrtonguttier.projetointerdisciplinar1.Telas.*;
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.*;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +27,8 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
      * Creates new form ProjetoInterdisciplinar
      */
     public ProjetoInterdisciplinar1() {
-        objetos = new ArrayList<>();
-        objetos3D = new ArrayList<>();
+        objetos = new LinkedList<>();
+        objetos3D = new LinkedList<>();
         initComponents();
         this.setLocationRelativeTo(null);
         atualizarQuantidades();
@@ -48,10 +51,10 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         lblQtdTriangulos = new javax.swing.JLabel();
         lblTotalObj2D = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAdicionarCone = new javax.swing.JButton();
+        btnAdicionarParalelepipedo = new javax.swing.JButton();
+        btnAdicionarCilindro = new javax.swing.JButton();
+        btnMostrarObjetos3D = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -130,18 +133,28 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Objetos 3D"));
 
-        jButton1.setText("Adicionar Cone");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionarCone.setText("Adicionar Cone");
+        btnAdicionarCone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAdicionarConeActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Adicionar Paralelepípedo");
+        btnAdicionarParalelepipedo.setText("Adicionar Paralelepípedo");
+        btnAdicionarParalelepipedo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarParalelepipedoActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Adicionar Cilíndro");
+        btnAdicionarCilindro.setText("Adicionar Cilíndro");
+        btnAdicionarCilindro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarCilindroActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Mostrar Todos");
+        btnMostrarObjetos3D.setText("Mostrar Todos");
 
         jLabel1.setText("Quantidade de cones: %d");
 
@@ -160,16 +173,16 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton4))
+                            .addComponent(btnAdicionarParalelepipedo)
+                            .addComponent(btnMostrarObjetos3D))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)))
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(btnAdicionarCone)
+                    .addComponent(btnAdicionarCilindro))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,19 +190,19 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnAdicionarCone)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnAdicionarParalelepipedo)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(btnAdicionarCilindro)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                    .addComponent(btnMostrarObjetos3D)
                     .addComponent(jLabel4))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -238,12 +251,24 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         atualizarQuantidades();
     }//GEN-LAST:event_btnTrianguloActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAdicionarConeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarConeActionPerformed
         // TODO add your handling code here:
         TelaCone tela = new TelaCone(this, true, objetos3D);
         tela.setVisible(true);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAdicionarConeActionPerformed
+
+    private void btnAdicionarParalelepipedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarParalelepipedoActionPerformed
+        // TODO add your handling code here:
+        TelaParalelepipedo tela = new TelaParalelepipedo(this, true, objetos3D);
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarParalelepipedoActionPerformed
+
+    private void btnAdicionarCilindroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarCilindroActionPerformed
+        // TODO add your handling code here:
+        TelaCilindro tela = new TelaCilindro(this, true, objetos3D);
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnAdicionarCilindroActionPerformed
 
     private void atualizarQuantidades() {
 
@@ -298,13 +323,13 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionarCilindro;
+    private javax.swing.JButton btnAdicionarCone;
+    private javax.swing.JButton btnAdicionarParalelepipedo;
     private javax.swing.JButton btnMostrarObjetos2D;
+    private javax.swing.JButton btnMostrarObjetos3D;
     private javax.swing.JButton btnQuadrado;
     private javax.swing.JButton btnTriangulo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

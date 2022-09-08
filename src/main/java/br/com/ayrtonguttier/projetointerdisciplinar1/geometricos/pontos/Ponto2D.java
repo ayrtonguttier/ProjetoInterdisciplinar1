@@ -1,11 +1,11 @@
-package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
+package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.pontos;
 
-public final class Ponto2D {
+public class Ponto2D {
 
-    private float x;
-    private float y;
+    protected double x;
+    protected double y;
 
-    public Ponto2D(float x, float y) throws Exception {
+    public Ponto2D(double x, double y) throws Exception {
         if (x < 0.) {
             throw new Exception("Lado x deve ser maior que zero.");
         }
@@ -18,19 +18,19 @@ public final class Ponto2D {
 
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(float y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(float x) {
+    public void setX(double x) {
         this.x = x;
     }
 

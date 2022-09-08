@@ -4,10 +4,9 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.ConeReto;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Factory;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Cilindro;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
-
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -15,18 +14,19 @@ import javax.swing.JOptionPane;
  *
  * @author ayrtonguttier
  */
-public class TelaCone extends javax.swing.JDialog {
+public class TelaCilindro extends javax.swing.JDialog {
 
     private final List<Objeto3D> objetos;
 
     /**
-     * Creates new form TelaCone
+     * Creates new form TelaCilindro
      */
-    public TelaCone(java.awt.Frame parent, boolean modal, List<Objeto3D> objetos) {
+    public TelaCilindro(java.awt.Frame parent, boolean modal, List<Objeto3D> objetos) {
         super(parent, modal);
-        this.objetos = objetos;
+
         initComponents();
         setLocationRelativeTo(parent);
+        this.objetos = objetos;
     }
 
     /**
@@ -46,20 +46,20 @@ public class TelaCone extends javax.swing.JDialog {
         txtPosicaoX = new javax.swing.JTextField();
         txtPosicaoY = new javax.swing.JTextField();
         txtPosicaoZ = new javax.swing.JTextField();
-        txtRaioBase = new javax.swing.JTextField();
+        txtRaio = new javax.swing.JTextField();
         txtAltura = new javax.swing.JTextField();
         btnSair = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Posição X");
+        jLabel1.setText("Posição X:");
 
-        jLabel2.setText("Posição Y");
+        jLabel2.setText("Posição Y:");
 
-        jLabel3.setText("Posição Z");
+        jLabel3.setText("Posição Z:");
 
-        jLabel4.setText("Raio da base");
+        jLabel4.setText("Raio da base:");
 
         jLabel5.setText("Altura");
 
@@ -85,23 +85,23 @@ public class TelaCone extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConfirmar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPosicaoY, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPosicaoZ, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRaioBase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAltura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPosicaoX, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAltura, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                            .addComponent(txtRaio)
+                            .addComponent(txtPosicaoZ)
+                            .addComponent(txtPosicaoY)
+                            .addComponent(txtPosicaoX)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSair)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addComponent(btnConfirmar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,12 +122,12 @@ public class TelaCone extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtRaioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(txtRaio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair)
                     .addComponent(btnConfirmar))
@@ -138,26 +138,25 @@ public class TelaCone extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        String x, y, z, raio, altura;
 
-        String x, y, z, raioBase, altura;
         x = txtPosicaoX.getText();
         y = txtPosicaoY.getText();
         z = txtPosicaoZ.getText();
-        raioBase = txtRaioBase.getText();
+        raio = txtRaio.getText();
         altura = txtAltura.getText();
+
         try {
-            ConeReto cone = Factory.criarConeReto(x, y, z, raioBase, altura);
-            this.objetos.add(cone);
-            JOptionPane.showMessageDialog(this, cone.toString(), "Cone criado com sucesso.", JOptionPane.INFORMATION_MESSAGE);
+            Cilindro c = Factory.criarCilindro(x, y, z, raio, altura);
+            objetos.add(c);
+            JOptionPane.showMessageDialog(this, c.toString(), "Cilindro criado com sucesso.", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema o criar cone.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema ao criar cilindro.", JOptionPane.WARNING_MESSAGE);
         }
 
 
@@ -176,6 +175,6 @@ public class TelaCone extends javax.swing.JDialog {
     private javax.swing.JTextField txtPosicaoX;
     private javax.swing.JTextField txtPosicaoY;
     private javax.swing.JTextField txtPosicaoZ;
-    private javax.swing.JTextField txtRaioBase;
+    private javax.swing.JTextField txtRaio;
     // End of variables declaration//GEN-END:variables
 }

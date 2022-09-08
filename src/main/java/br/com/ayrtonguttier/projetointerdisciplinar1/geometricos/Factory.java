@@ -4,6 +4,14 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.ConeReto;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadrado;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Cilindro;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Paralelepipedo;
+
 /**
  *
  * @author ayrtonguttier
@@ -33,22 +41,22 @@ public class Factory {
             throw new Exception("Lado do quadrado deve ser informado.");
         }
 
-        if (!Auxiliar.ehFloat(x)) {
+        if (!Auxiliar.ehDouble(x)) {
             throw new Exception("Posição X inválida.");
         }
 
-        if (!Auxiliar.ehFloat(y)) {
+        if (!Auxiliar.ehDouble(y)) {
             throw new Exception("Posição Y inválida.");
         }
 
-        if (!Auxiliar.ehFloat(lado)) {
+        if (!Auxiliar.ehDouble(lado)) {
             throw new Exception("Lado inválido.");
         }
 
-        float fX, fY, fLado;
-        fX = Float.parseFloat(x);
-        fY = Float.parseFloat(y);
-        fLado = Float.parseFloat(lado);
+        double fX, fY, fLado;
+        fX = Double.parseDouble(x);
+        fY = Double.parseDouble(y);
+        fLado = Double.parseDouble(lado);
 
         return new Quadrado(fX, fY, fLado);
     }
@@ -68,23 +76,23 @@ public class Factory {
         if (altura.isBlank()) {
             throw new Exception("Altura do triângulo deve ser informada.");
         }
-        if (!Auxiliar.ehFloat(x)) {
+        if (!Auxiliar.ehDouble(x)) {
             throw new Exception("Posição X inválida.");
         }
-        if (!Auxiliar.ehFloat(y)) {
+        if (!Auxiliar.ehDouble(y)) {
             throw new Exception("Posição Y inválida.");
         }
-        if (!Auxiliar.ehFloat(base)) {
+        if (!Auxiliar.ehDouble(base)) {
             throw new Exception("Base inválida.");
         }
-        if (!Auxiliar.ehFloat(altura)) {
+        if (!Auxiliar.ehDouble(altura)) {
             throw new Exception("Altura inválida.");
         }
 
-        float fX = Float.parseFloat(x);
-        float fY = Float.parseFloat(y);
-        float fBase = Float.parseFloat(base);
-        float fAltura = Float.parseFloat(altura);
+        double fX = Double.parseDouble(x);
+        double fY = Double.parseDouble(y);
+        double fBase = Double.parseDouble(base);
+        double fAltura = Double.parseDouble(altura);
 
         return new TrianguloRetangulo(fX, fY, fBase, fAltura);
     }
@@ -99,6 +107,92 @@ public class Factory {
     }
 
     public static ConeReto criarConeReto(String x, String y, String z, String raioBase, String altura) throws Exception {
+
+        lancaErroSePosicaoForInvalida(x, y, z);
+
+        if (raioBase.isBlank()) {
+            throw new Exception("Raio da base deve estar preenchido.");
+        }
+
+        if (altura.isBlank()) {
+            throw new Exception("Altura deve estar preenchida.");
+        }
+
+        if (!Auxiliar.ehDouble(raioBase)) {
+            throw new Exception("Raio da base inválido.");
+        }
+        if (!Auxiliar.ehDouble(altura)) {
+            throw new Exception("Altura inválida.");
+        }
+
+        double fX, fY, fZ, fRaioBase, fAltura;
+        fX = Double.parseDouble(x);
+        fY = Double.parseDouble(y);
+        fZ = Double.parseDouble(z);
+        fRaioBase = Double.parseDouble(raioBase);
+        fAltura = Double.parseDouble(altura);
+
+        return new ConeReto(fX, fY, fZ, fRaioBase, fAltura);
+
+    }
+
+    public static Paralelepipedo criarParalelepipedo(String x, String y, String z, String a, String b, String c) throws Exception {
+
+        lancaErroSePosicaoForInvalida(x, y, z);
+
+        if (a.isBlank()) {
+            throw new Exception("Aresta A deve ser preenchida.");
+        }
+        if (b.isBlank()) {
+            throw new Exception("Aresta B deve ser preenchida.");
+        }
+        if (c.isBlank()) {
+            throw new Exception("Aresta C deve ser preenchida.");
+        }
+
+        if (!Auxiliar.ehDouble(a)) {
+            throw new Exception("Aresta A inválida.");
+        }
+        if (!Auxiliar.ehDouble(b)) {
+            throw new Exception("Aresta B inválida.");
+        }
+        if (!Auxiliar.ehDouble(c)) {
+            throw new Exception("Aresta C inválida.");
+        }
+
+        double dx, dy, dz, da, db, dc;
+
+        dx = Double.parseDouble(x);
+        dy = Double.parseDouble(y);
+        dz = Double.parseDouble(z);
+        da = Double.parseDouble(a);
+        db = Double.parseDouble(b);
+        dc = Double.parseDouble(c);
+
+        return new Paralelepipedo(dx, dy, dz, da, db, dc);
+    }
+
+    public static Cilindro criarCilindro(String x, String y, String z, String raioBase, String altura) throws Exception {
+        lancaErroSePosicaoForInvalida(x, y, z);
+
+        if (raioBase.isBlank()) {
+            throw new Exception("Raio da base deve ser preenchido.");
+        }
+        if (altura.isBlank()) {
+            throw new Exception("Altura deve ser preenchida.");
+        }
+
+        double dx, dy, dz, dRaio, dAltura;
+        dx = Double.parseDouble(x);
+        dy = Double.parseDouble(y);
+        dz = Double.parseDouble(z);
+        dRaio = Double.parseDouble(raioBase);
+        dAltura = Double.parseDouble(altura);        
+        return new Cilindro(dx, dy, dz, dRaio, dAltura);
+
+    }
+
+    private static void lancaErroSePosicaoForInvalida(String x, String y, String z) throws Exception {
         if (x.isBlank()) {
             throw new Exception("Posicão X deve estar preenchida.");
         }
@@ -109,39 +203,15 @@ public class Factory {
             throw new Exception("Posicão Z deve estar preenchida.");
         }
 
-        if (raioBase.isBlank()) {
-            throw new Exception("Raio da base deve estar preenchido.");
-        }
-
-        if (altura.isBlank()) {
-            throw new Exception("Altura deve estar preenchida.");
-        }
-
-        if (!Auxiliar.ehFloat(x)) {
+        if (!Auxiliar.ehDouble(x)) {
             throw new Exception("Posição X inválida.");
         }
-        if (!Auxiliar.ehFloat(y)) {
+        if (!Auxiliar.ehDouble(y)) {
             throw new Exception("Posição Y inválida.");
         }
-        if (!Auxiliar.ehFloat(z)) {
+        if (!Auxiliar.ehDouble(z)) {
             throw new Exception("Posição Z inválida.");
         }
-
-        if (!Auxiliar.ehFloat(raioBase)) {
-            throw new Exception("Raio da base inválido.");
-        }
-        if (!Auxiliar.ehFloat(altura)) {
-            throw new Exception("Altura inválida.");
-        }
-
-        float fX, fY, fZ, fRaioBase, fAltura;
-        fX = Float.parseFloat(x);
-        fY = Float.parseFloat(y);
-        fZ = Float.parseFloat(z);
-        fRaioBase = Float.parseFloat(raioBase);
-        fAltura = Float.parseFloat(altura);
-
-        return new ConeReto(fX, fY, fZ, fRaioBase, fAltura);
 
     }
 
