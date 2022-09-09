@@ -4,11 +4,17 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaQuadrado;
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaTriangulo;
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaCone;
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaEquacaoSegundoGrau;
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaParalelepipedo;
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaFormas;
+import br.com.ayrtonguttier.projetointerdisciplinar1.telas.TelaCilindro;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadrado;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
-import br.com.ayrtonguttier.projetointerdisciplinar1.Telas.*;
 import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.Equacao;
 import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.EquacaoSegundoGrau;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Filtros;

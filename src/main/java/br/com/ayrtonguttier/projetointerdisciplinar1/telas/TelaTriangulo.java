@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
+package br.com.ayrtonguttier.projetointerdisciplinar1.telas;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.ConeReto;
 import br.com.ayrtonguttier.projetointerdisciplinar1.Factory;
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
-
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -15,18 +14,18 @@ import javax.swing.JOptionPane;
  *
  * @author ayrtonguttier
  */
-public class TelaCone extends javax.swing.JDialog {
+public class TelaTriangulo extends javax.swing.JDialog {
 
-    private final List<Objeto3D> objetos;
+    private final List<Objeto2D> objetos;
 
     /**
-     * Creates new form TelaCone
+     * Creates new form TelaTriangulo
      */
-    public TelaCone(java.awt.Frame parent, boolean modal, List<Objeto3D> objetos) {
+    public TelaTriangulo(java.awt.Frame parent, boolean modal, List<Objeto2D> objetos) {
         super(parent, modal);
-        this.objetos = objetos;
         initComponents();
         setLocationRelativeTo(parent);
+        this.objetos = objetos;
     }
 
     /**
@@ -42,11 +41,9 @@ public class TelaCone extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtPosicaoX = new javax.swing.JTextField();
         txtPosicaoY = new javax.swing.JTextField();
-        txtPosicaoZ = new javax.swing.JTextField();
-        txtRaioBase = new javax.swing.JTextField();
+        txtBase = new javax.swing.JTextField();
         txtAltura = new javax.swing.JTextField();
         btnSair = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
@@ -57,11 +54,9 @@ public class TelaCone extends javax.swing.JDialog {
 
         jLabel2.setText("Posição Y");
 
-        jLabel3.setText("Posição Z");
+        jLabel3.setText("Base");
 
-        jLabel4.setText("Raio da base");
-
-        jLabel5.setText("Altura");
+        jLabel4.setText("Altura");
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -85,23 +80,25 @@ public class TelaCone extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(txtPosicaoX, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPosicaoY, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtBase, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSair)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConfirmar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPosicaoY, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPosicaoZ, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRaioBase, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAltura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPosicaoX, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnConfirmar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,16 +115,12 @@ public class TelaCone extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPosicaoZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtRaioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair)
                     .addComponent(btnConfirmar))
@@ -145,24 +138,27 @@ public class TelaCone extends javax.swing.JDialog {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         // TODO add your handling code here:
 
-        String x, y, z, raioBase, altura;
+        String x, y, base, altura;
+
         x = txtPosicaoX.getText();
         y = txtPosicaoY.getText();
-        z = txtPosicaoZ.getText();
-        raioBase = txtRaioBase.getText();
+        base = txtBase.getText();
         altura = txtAltura.getText();
+
         try {
-            ConeReto cone = Factory.criarConeReto(x, y, z, raioBase, altura);
-            this.objetos.add(cone);
-            JOptionPane.showMessageDialog(this, cone.toString(), "Cone criado com sucesso.", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+            TrianguloRetangulo t = Factory.criarTrianguloRetangulo(x, y, base, altura);
+            this.objetos.add(t);
+            JOptionPane.showMessageDialog(this, t.toString(), "Triângulo adicionado com sucesso", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema o criar cone.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema ao criar triângulo.", JOptionPane.WARNING_MESSAGE);
         }
 
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
@@ -171,11 +167,9 @@ public class TelaCone extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtAltura;
+    private javax.swing.JTextField txtBase;
     private javax.swing.JTextField txtPosicaoX;
     private javax.swing.JTextField txtPosicaoY;
-    private javax.swing.JTextField txtPosicaoZ;
-    private javax.swing.JTextField txtRaioBase;
     // End of variables declaration//GEN-END:variables
 }
