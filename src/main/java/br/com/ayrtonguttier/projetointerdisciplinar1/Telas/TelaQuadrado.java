@@ -4,7 +4,7 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Factory;
+import br.com.ayrtonguttier.projetointerdisciplinar1.Factory;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadrado;
 import java.util.List;

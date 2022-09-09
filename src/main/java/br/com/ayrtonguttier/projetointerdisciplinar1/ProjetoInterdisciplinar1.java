@@ -9,7 +9,8 @@ import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objet
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Quadrado;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.TrianguloRetangulo;
 import br.com.ayrtonguttier.projetointerdisciplinar1.Telas.*;
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Factory;
+import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.Equacao;
+import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.EquacaoSegundoGrau;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Filtros;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Cilindro;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.ConeReto;
@@ -37,6 +38,7 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
     private List<Objeto2D> objetos;
     private List<Objeto3D> objetos3D;
+    private List<Equacao> equacoes;
 
     /**
      * Creates new form ProjetoInterdisciplinar
@@ -44,6 +46,7 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
     public ProjetoInterdisciplinar1() {
         objetos = new LinkedList<>();
         objetos3D = new LinkedList<>();
+        equacoes = new LinkedList<>();
         initComponents();
         this.setLocationRelativeTo(null);
         atualizarQuantidades();
@@ -82,6 +85,10 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnAddEquacao = new javax.swing.JButton();
+        lblQtdEquacoes = new javax.swing.JLabel();
+        btnMostrarEquacoes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Projeto Interdisciplinar");
@@ -312,6 +319,48 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
             }
         });
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Equações"));
+
+        btnAddEquacao.setText("Adicionar Equação Segundo Grau");
+        btnAddEquacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEquacaoActionPerformed(evt);
+            }
+        });
+
+        lblQtdEquacoes.setText("Quantidade de equações: %d");
+
+        btnMostrarEquacoes.setText("Mostrar Equações");
+        btnMostrarEquacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarEquacoesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAddEquacao)
+                .addGap(18, 18, 18)
+                .addComponent(lblQtdEquacoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMostrarEquacoes)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddEquacao)
+                    .addComponent(lblQtdEquacoes)
+                    .addComponent(btnMostrarEquacoes))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -326,7 +375,8 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAbrir)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSalvar)))
+                        .addComponent(btnSalvar))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -336,7 +386,9 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnSair)
@@ -399,6 +451,10 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
             File f = fChooser.getSelectedFile();
 
+            if (!f.getAbsolutePath().endsWith(".pi")) {
+                f = new File(f.getAbsolutePath() + ".pi");
+            }
+
             if (f.exists()) {
                 f.delete();
             }
@@ -411,6 +467,9 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                     }
                     for (Objeto3D o : objetos3D) {
                         writer.append(o.criarRegistro() + "\n");
+                    }
+                    for (Equacao e : equacoes) {
+                        writer.append(e.criarRegistro());
                     }
                 }
 
@@ -449,10 +508,18 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
                     String[] dados = linha.split(";");
                     try {
 
-                        if (Factory.getTipo(linha) == Factory.OBJETO2D) {
-                            objetos.add(Factory.criarObjeto(linha));
-                        } else if (Factory.getTipo(linha) == Factory.OBJETO3D) {
-                            objetos3D.add(Factory.criarObjeto3D(linha));
+                        switch (Factory.getTipo(linha)) {
+                            case Factory.OBJETO2D:
+                                objetos.add(Factory.criarObjeto(linha));
+                                break;
+                            case Factory.OBJETO3D:
+                                objetos3D.add(Factory.criarObjeto3D(linha));
+                                break;
+                            case Factory.EQUACAO:
+                                equacoes.add(Factory.criarEquacao(linha));
+                                break;
+                            default:
+                                break;
                         }
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(this, "Formato do arquivo inválido", "Erro ao abrir arquivo.", JOptionPane.ERROR_MESSAGE);
@@ -503,6 +570,18 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         tela.exibir(Filtros.getCilindros(objetos3D));
     }//GEN-LAST:event_btnMostrarCilindrosActionPerformed
 
+    private void btnAddEquacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEquacaoActionPerformed
+        TelaEquacaoSegundoGrau tela = new TelaEquacaoSegundoGrau(this, true, equacoes);
+        tela.setVisible(true);
+        atualizarQuantidades();
+    }//GEN-LAST:event_btnAddEquacaoActionPerformed
+
+    private void btnMostrarEquacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarEquacoesActionPerformed
+        // TODO add your handling code here:
+        TelaFormas tela = new TelaFormas(this, true);
+        tela.exibir(equacoes);
+    }//GEN-LAST:event_btnMostrarEquacoesActionPerformed
+
     private void atualizarQuantidades() {
 
         Map<String, Integer> quantidades;
@@ -535,6 +614,8 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
         lblQtdParalelepipedos.setText(String.format("Quantidade de paralelepípedos: %d", quantidades.getOrDefault(Paralelepipedo.class.getTypeName(), 0)));
         lblQtdCilindros.setText(String.format("Quantidade de cilíndros: %d", quantidades.getOrDefault(Cilindro.class.getTypeName(), 0)));
         lblQtd3d.setText(String.format("Total de objetos 3D: %d", quantidades.getOrDefault(tipo3d, 0)));
+
+        lblQtdEquacoes.setText(String.format("Total de equações: %d", equacoes.size()));
 
     }
 
@@ -576,11 +657,13 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnAddEquacao;
     private javax.swing.JButton btnAdicionarCilindro;
     private javax.swing.JButton btnAdicionarCone;
     private javax.swing.JButton btnAdicionarParalelepipedo;
     private javax.swing.JButton btnMostrarCilindros;
     private javax.swing.JButton btnMostrarCones;
+    private javax.swing.JButton btnMostrarEquacoes;
     private javax.swing.JButton btnMostrarObjetos2D;
     private javax.swing.JButton btnMostrarObjetos3D;
     private javax.swing.JButton btnMostrarParalelepipedos;
@@ -592,9 +675,11 @@ public class ProjetoInterdisciplinar1 extends javax.swing.JFrame {
     private javax.swing.JButton btnTriangulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblQtd3d;
     private javax.swing.JLabel lblQtdCilindros;
     private javax.swing.JLabel lblQtdCones;
+    private javax.swing.JLabel lblQtdEquacoes;
     private javax.swing.JLabel lblQtdParalelepipedos;
     private javax.swing.JLabel lblQtdQuadrados;
     private javax.swing.JLabel lblQtdTriangulos;

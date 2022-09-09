@@ -4,7 +4,7 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Factory;
+import br.com.ayrtonguttier.projetointerdisciplinar1.Factory;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Paralelepipedo;
 import java.util.List;

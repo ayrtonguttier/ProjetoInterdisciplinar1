@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos;
+package br.com.ayrtonguttier.projetointerdisciplinar1;
 
+import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.Equacao;
+import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.EquacaoSegundoGrau;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.ConeReto;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
@@ -22,6 +24,7 @@ public class Factory {
 
     public static final int OBJETO2D = 0;
     public static final int OBJETO3D = 1;
+    public static final int EQUACAO = 2;
 
     public static int getTipo(String linha) {
         String[] dados = linha.split(";");
@@ -34,6 +37,10 @@ public class Factory {
             if (Objeto3D.class.isAssignableFrom(c)) {
                 return Factory.OBJETO3D;
             }
+            if (Equacao.class.isAssignableFrom(c)) {
+                return Factory.EQUACAO;
+            }
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Factory.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
@@ -241,6 +248,17 @@ public class Factory {
             throw new Exception("Posição Z inválida.");
         }
 
+    }
+
+    public static Equacao criarEquacao(String linha)
+            throws Exception {
+
+        String[] dados = linha.split(";");
+        if (EquacaoSegundoGrau.class.getTypeName().equals(dados[0])) {
+            return new EquacaoSegundoGrau(dados[1], dados[2], dados[3]);
+        }
+
+        throw new Exception("Tipo de equação não reconhecido.");
     }
 
 }

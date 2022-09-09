@@ -31,9 +31,9 @@ public class Filtros {
 
         return quadrados;
     }
+    
 
     public static List<TrianguloRetangulo> getTriangulos(List<Objeto2D> objetos) {
-
         List<TrianguloRetangulo> dados = new ArrayList<>(objetos.size());
 
         for (Objeto2D obj : objetos) {

@@ -1,9 +1,10 @@
 package br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Forma;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.pontos.Ponto2D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.Descritivo;
+import br.com.ayrtonguttier.projetointerdisciplinar1.Registro;
 
-public abstract class Objeto2D implements Forma{
+public abstract class Objeto2D implements Descritivo, Registro {
 
     protected String descricaoFigura;
     protected Ponto2D ponto;
@@ -24,6 +25,6 @@ public abstract class Objeto2D implements Forma{
     public abstract String criarRegistro();
 
     @Override
-    public abstract String getInformacoesFormatadas();    
+    public abstract String getInformacoesFormatadas();
 
 }

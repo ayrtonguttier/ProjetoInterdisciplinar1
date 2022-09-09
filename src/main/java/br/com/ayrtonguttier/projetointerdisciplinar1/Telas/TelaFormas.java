@@ -4,10 +4,9 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.Forma;
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos2d.Objeto2D;
 import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
 import java.util.List;
+import br.com.ayrtonguttier.projetointerdisciplinar1.Descritivo;
 
 /**
  *
@@ -24,8 +23,8 @@ public class TelaFormas extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
     }
 
-    public void exibir(List<? extends Forma> objetos) {
-        for (Forma objeto : objetos) {
+    public void exibir(List<? extends Descritivo> objetos) {
+        for (Descritivo objeto : objetos) {
             String atual = txtAreaObjetos.getText();
             txtAreaObjetos.setText(String.format("%s%s\n", atual, objeto.getInformacoesFormatadas()));
         }

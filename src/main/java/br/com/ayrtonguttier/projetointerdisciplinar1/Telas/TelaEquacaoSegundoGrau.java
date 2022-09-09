@@ -4,9 +4,8 @@
  */
 package br.com.ayrtonguttier.projetointerdisciplinar1.Telas;
 
-import br.com.ayrtonguttier.projetointerdisciplinar1.Factory;
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Cilindro;
-import br.com.ayrtonguttier.projetointerdisciplinar1.geometricos.objetos3d.Objeto3D;
+import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.Equacao;
+import br.com.ayrtonguttier.projetointerdisciplinar1.equacoes.EquacaoSegundoGrau;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -14,19 +13,18 @@ import javax.swing.JOptionPane;
  *
  * @author ayrtonguttier
  */
-public class TelaCilindro extends javax.swing.JDialog {
+public class TelaEquacaoSegundoGrau extends javax.swing.JDialog {
 
-    private final List<Objeto3D> objetos;
+    private final List<Equacao> equacoes;
 
     /**
-     * Creates new form TelaCilindro
+     * Creates new form TelaEquacaoSegundoGrau
      */
-    public TelaCilindro(java.awt.Frame parent, boolean modal, List<Objeto3D> objetos) {
+    public TelaEquacaoSegundoGrau(java.awt.Frame parent, boolean modal, List<Equacao> equacoes) {
         super(parent, modal);
-
         initComponents();
         setLocationRelativeTo(parent);
-        this.objetos = objetos;
+        this.equacoes = equacoes;
     }
 
     /**
@@ -41,27 +39,19 @@ public class TelaCilindro extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtPosicaoX = new javax.swing.JTextField();
-        txtPosicaoY = new javax.swing.JTextField();
-        txtPosicaoZ = new javax.swing.JTextField();
-        txtRaio = new javax.swing.JTextField();
-        txtAltura = new javax.swing.JTextField();
+        txtA = new javax.swing.JTextField();
+        txtB = new javax.swing.JTextField();
+        txtC = new javax.swing.JTextField();
         btnSair = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Posição X:");
+        jLabel1.setText("Coeficiente A:");
 
-        jLabel2.setText("Posição Y:");
+        jLabel2.setText("Coeficiente B:");
 
-        jLabel3.setText("Posição Z:");
-
-        jLabel4.setText("Raio da base:");
-
-        jLabel5.setText("Altura");
+        jLabel3.setText("Coeficiente C:");
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -88,19 +78,15 @@ public class TelaCilindro extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAltura, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(txtRaio)
-                            .addComponent(txtPosicaoZ)
-                            .addComponent(txtPosicaoY)
-                            .addComponent(txtPosicaoX)))
+                            .addComponent(txtC, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                            .addComponent(txtB)
+                            .addComponent(txtA)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(btnConfirmar)))
                 .addContainerGap())
         );
@@ -110,24 +96,16 @@ public class TelaCilindro extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPosicaoX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtPosicaoY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPosicaoZ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtRaio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                    .addComponent(txtC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair)
                     .addComponent(btnConfirmar))
@@ -137,30 +115,22 @@ public class TelaCilindro extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
-
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        String x, y, z, raio, altura;
-
-        x = txtPosicaoX.getText();
-        y = txtPosicaoY.getText();
-        z = txtPosicaoZ.getText();
-        raio = txtRaio.getText();
-        altura = txtAltura.getText();
-
         try {
-            Cilindro c = Factory.criarCilindro(x, y, z, raio, altura);
-            objetos.add(c);
-            JOptionPane.showMessageDialog(this, c.toString(), "Cilindro criado com sucesso.", JOptionPane.INFORMATION_MESSAGE);
+            EquacaoSegundoGrau e = new EquacaoSegundoGrau(txtA.getText(), txtB.getText(), txtC.getText());
+            equacoes.add(e);
+            JOptionPane.showMessageDialog(this, e.toString(), "Equação criada com sucesso.", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema ao criar cilindro.", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema ao criar equação.", JOptionPane.WARNING_MESSAGE);
         }
 
-
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -169,12 +139,8 @@ public class TelaCilindro extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtAltura;
-    private javax.swing.JTextField txtPosicaoX;
-    private javax.swing.JTextField txtPosicaoY;
-    private javax.swing.JTextField txtPosicaoZ;
-    private javax.swing.JTextField txtRaio;
+    private javax.swing.JTextField txtA;
+    private javax.swing.JTextField txtB;
+    private javax.swing.JTextField txtC;
     // End of variables declaration//GEN-END:variables
 }
